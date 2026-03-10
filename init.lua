@@ -152,7 +152,13 @@ lightning.strike = function(pos)
 		-- only affect players inside effect_range
 		if distance < lightning.effect_range then
 			local sky = {}
-			sky.bgcolor, sky.type, sky.textures = player:get_sky(false)
+			--sky.bgcolor, sky.type, sky.textures = player:get_sky()
+			local _sky = player:get_sky(true)
+			if _sky ~= nil then
+			sky.bgcolor  = _sky.base_color
+			sky.type     = _sky.type
+			sky.textures = _sky.textures
+			end
 
 			local name = player:get_player_name()
 			if ps[name] == nil then
