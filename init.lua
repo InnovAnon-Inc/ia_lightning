@@ -43,7 +43,12 @@ local revertsky = function()
 		local player = minetest.get_player_by_name(playername)
 		-- check if the player is still online
 		if player then
-			player:set_sky(sky.bgcolor, sky.type, sky.textures)
+			--player:set_sky(sky.bgcolor, sky.type, sky.textures)
+			player:set_sky({
+            		base_color = sky.bgcolor,
+            		type       = sky.type,
+            		textures   = sky.textures,
+			})
 		end
 	end
 
@@ -147,12 +152,17 @@ lightning.strike = function(pos)
 		-- only affect players inside effect_range
 		if distance < lightning.effect_range then
 			local sky = {}
-			sky.bgcolor, sky.type, sky.textures = player:get_sky()
+			sky.bgcolor, sky.type, sky.textures = player:get_sky(false)
 
 			local name = player:get_player_name()
 			if ps[name] == nil then
 				ps[name] = sky
-				player:set_sky(0xffffff, "plain", {})
+				--player:set_sky(0xffffff, "plain", {})
+				player:set_sky({
+            			base_color = 0xffffff,
+            			type       = "plain",
+            			textures   = {},
+				})
 			end
 		end
 	end
