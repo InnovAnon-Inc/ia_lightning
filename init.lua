@@ -11,6 +11,7 @@ of the license, or (at your option) any later version.
 --]]
 
 lightning = {}
+lightning.mod = 'ia'
 
 lightning.interval_low = 17
 lightning.interval_high = 503
